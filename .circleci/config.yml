@@ -26,13 +26,14 @@ jobs:
   install_dependencies:
     executor: app-executor
     steps:
-      -checkout
+      - checkout
       - *restore-cache
       - *install-dependencies
+      - *save-cache
   unit_testing:
     executor: app-executor
     steps:
-      -checkout
+      - checkout
       - *restore-cache
       - *install-dependencies
       - run:
