@@ -6,18 +6,18 @@ executors:
       -image: cimg/node:16.14.1
 
 
-aliases:
-  - &restore-cache:
+references:
+  restore-cache: &restore-cache:
     restore_cache:
       keys:
         - app-{{ checksum "package.json" }}
         - app-
-  - &save-cache:
+  save-cache: &save-cache:
     save_cache:
       key: app-{{ checksum "package.json" }}
       paths:
         - node_modules
-  - &install-dependencies
+  install-dependencies: &install-dependencies
     run:
       name: Install dependencies
       command: npm install
