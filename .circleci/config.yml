@@ -1,7 +1,7 @@
 version: 2.1
 executors:
   app-executor:
-    working_directories: ~/app
+    working_directories: ~/repo
     docker:
       -image: cimg/node:16.14.1
 
