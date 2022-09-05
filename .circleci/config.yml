@@ -5,14 +5,13 @@ executors:
     docker:
       -image: cimg/node:16.14.1
 
-
 references:
-  restore-cache: &restore-cache:
+  restore-cache: &restore-cache
     restore_cache:
       keys:
         - app-{{ checksum "package.json" }}
         - app-
-  save-cache: &save-cache:
+  save-cache: &save-cache
     save_cache:
       key: app-{{ checksum "package.json" }}
       paths:
@@ -46,4 +45,4 @@ workflows:
       - install_dependencies
       - unit_testing:
           requires:
-            - install_dependencies 
+            - install_dependencies
