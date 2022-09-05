@@ -1,0 +1,49 @@
+version 2.1
+
+executers:
+  app-executor:
+    working_directories: ~/app
+    docker:
+      -image: cimg/node:16.14.1
+
+
+aliases:
+  - &restore-cache:
+    restore_cache:
+      keys:
+        - app-{{ checksum "package.json" }}
+        - app-
+  - &save-cache:
+    save_cache:
+      paths:
+        - node_modules
+      key: app-{{ checksum "package.json" }}
+  - &install-dependencies
+    run:
+      name: Install dependencies
+      command: npm install
+
+jobs:
+  install_dependencies:
+    executor: app-executor
+    steps:
+      -checkout
+      - *restore-cache
+      - *install-dependencies
+  unit_testing:
+    executor: app-executor
+    steps:
+      -checkout
+      - *restore-cache
+      - *install-dependencies
+      - run:
+          name: Run Unit test
+          command: npm install
+
+workflows:
+  build_test:
+    jobs:
+      - install_dependencies
+      - unit_testing
+          requires:
+            - install_dependencies 
