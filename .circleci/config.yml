@@ -3,7 +3,7 @@ executors:
   my-executor:
     docker:
       - image: cimg/node:16.14.1
-    working_directories: ~/repo
+    working_directory: ~/repo
 
 references:
   restore-cache: &restore-cache
