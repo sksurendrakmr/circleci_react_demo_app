@@ -1,6 +1,6 @@
 version 2.1
 
-executers:
+executors:
   app-executor:
     working_directories: ~/app
     docker:
