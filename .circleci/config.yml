@@ -37,7 +37,7 @@ jobs:
       - *install-dependencies
       - run:
           name: Run Unit test
-          command: npm install
+          command: npm test
 
 workflows:
   build_test:
