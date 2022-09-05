@@ -14,9 +14,9 @@ aliases:
         - app-
   - &save-cache:
     save_cache:
+      key: app-{{ checksum "package.json" }}
       paths:
         - node_modules
-      key: app-{{ checksum "package.json" }}
   - &install-dependencies
     run:
       name: Install dependencies
