@@ -1,5 +1,4 @@
 version 2.1
-
 executors:
   app-executor:
     working_directories: ~/app
