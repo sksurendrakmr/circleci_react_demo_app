@@ -2,7 +2,7 @@ version: 2.1
 executors:
   my-executor:
     docker:
-      -image: cimg/node:16.14.1
+      - image: cimg/node:16.14.1
     working_directories: ~/repo
 
 references:
