@@ -111,3 +111,14 @@ workflows:
       - unit_testing:
           requires:
             - install_dependencies
+          filters:
+            branches:
+              only:
+                - master
+      - notify-via-slack:
+          requires:
+            - unit_testing
+          filters:
+            branches:
+              only:
+                - master
