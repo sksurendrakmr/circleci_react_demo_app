@@ -1,6 +1,6 @@
-version: 2.1
 orbs:
   slack: circleci/slack@4.10.1
+version: 2.1
 executors:
   my-executor:
     docker:
@@ -9,7 +9,7 @@ executors:
   slack-executor:
     docker:
       - image: "cimg/base:stable"
-    resource_class: small
+    # resource_class: small
 
 references:
   restore-cache: &restore-cache
@@ -56,15 +56,15 @@ jobs:
             {
               "blocks": [
                 {
-                  "type": "header"
+                  "type": "header",
                   "text": {
                     "type": "plain_text",
-                    "text": "${CIRCLE_BRANCH} branch,👍",
+                    "text": "${CIRCLE_BRANCH} branch deployment to aws s3 and cloudfront is complete. 👍",
                     "emoji": true
                   }
                 },
                 {
-                  "type": "section"
+                  "type": "section",
                   "fields": [
                     {
                       "type": "mrkdwn",
@@ -72,11 +72,11 @@ jobs:
                     },
                     {
                       "type": "mrkdwn",
-                      "text": "*BRANCH*:\n$CIRCLE_BRANCH"
+                      "text": "*Branch*:\n$CIRCLE_BRANCH"
                     },
                     {
                       "type": "mrkdwn",
-                      "text": "*When*:\n${date +'%m/%d/%Y %T'}"
+                      "text": "*When*:\n$(date +'%m/%d/%Y %T')"
                     },
                     {
                       "type": "mrkdwn",
@@ -86,20 +86,20 @@ jobs:
                       "type": "mrkdwn",
                       "text": "*Author*:\n$CIRCLE_PROJECT_USERNAME"
                     }
-                  ],
-                  {
-                      "type": "actions",
-                      "elements": [
-                        {
-                          "type": "button",
-                          "text": {
-                            "type": "plain_text",
-                            "text": "View Job"
-                          },
-                          "url": "${CIRCLE_BUILD_URL}"
-                        }
-                      ]
+                  ]
+                },
+                {
+                  "type": "actions",
+                  "elements": [
+                    {
+                      "type": "button",
+                      "text": {
+                        "type": "plain_text",
+                        "text": "View Job"
+                      },
+                      "url": "${CIRCLE_BUILD_URL}"
                     }
+                  ]
                 }
               ]
             }
