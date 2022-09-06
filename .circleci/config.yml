@@ -85,8 +85,9 @@ jobs:
                     {
                       "type": "mrkdwn",
                       "text": "*Author*:\n$CIRCLE_PROJECT_USERNAME"
-                    },
-                    {
+                    }
+                  ],
+                  {
                       "type": "actions",
                       "elements": [
                         {
@@ -99,7 +100,6 @@ jobs:
                         }
                       ]
                     }
-                  ]
                 }
               ]
             }
@@ -108,6 +108,10 @@ workflows:
   build_test:
     jobs:
       - install_dependencies
+          filters:
+            branches:
+              only:
+                - master
       - unit_testing:
           requires:
             - install_dependencies
