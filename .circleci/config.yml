@@ -6,6 +6,10 @@ executors:
     docker:
       - image: cimg/node:16.14.1
     working_directory: ~/repo
+  slack-executor:
+    docker:
+      - image: "cimg/base:stable"
+    resource_class: small
 
 references:
   restore-cache: &restore-cache
@@ -40,6 +44,14 @@ jobs:
       - run:
           name: Run Unit test
           command: npm test
+  notify-via-slack:
+    executor: slack-executor
+    steps:
+      - run: echo "Slack notification"
+      - slack/notify:
+          event: "always"
+          channel: "circleci-demo-react-app"
+          template: ""
 
 workflows:
   build_test:
