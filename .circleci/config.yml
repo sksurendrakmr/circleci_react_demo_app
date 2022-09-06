@@ -52,6 +52,44 @@ jobs:
           event: "always"
           channel: "circleci-demo-react-app"
           template: ""
+          custom: |
+            {
+              "blocks": [
+                {
+                  "type": "header"
+                  "text": {
+                    "type": "plain_text",
+                    "text": "${CIRCLE_BRANCH} branch,👍",
+                    "emoji": true
+                  }
+                },
+                {
+                  "type": "section"
+                  "fields": [
+                    {
+                      "type": "mrkdwn",
+                      "text": "*Project*:\n$CIRCLE_PROJECT_REPONAME"
+                    },
+                    {
+                      "type": "mrkdwn",
+                      "text": "*BRANCH*:\n$CIRCLE_BRANCH"
+                    },
+                    {
+                      "type": "mrkdwn",
+                      "text": "*When*:\n${date +'%m/%d/%Y %T'}"
+                    },
+                    {
+                      "type": "mrkdwn",
+                      "text": "*Build*:\n$CIRCLE_BUILD_NUM"
+                    },
+                    {
+                      "type": "mrkdwn",
+                      "text": "*Author*:\n$CIRCLE_PROJECT_USERNAME"
+                    },
+                  ]
+                }
+              ]
+            }
 
 workflows:
   build_test:
